@@ -1,0 +1,22 @@
+version: 2
+
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - unused
+
+linters-settings:
+  errcheck:
+    exclude-functions:
+      - fmt.Fprintf
+
+run:
+  timeout: 5m
+  skip-dirs:
+    - vendor
+
+output:
+  format: github-actions
+  print-columns: true

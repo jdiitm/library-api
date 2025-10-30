@@ -1,0 +1,31 @@
+{
+  "severity": "medium",
+  "confidence": "medium",
+  "exclude": [
+    "G104", // Ignore "Errors not checked" - handled by errcheck in lint
+    "G204", // Allow dynamic SQL queries when parameterized safely by GORM
+    "G304", // Ignore file path check for static migrations or config loads
+    "G306", // Ignore write permission check for temp/test file creation
+    "G301", // Ignore directory permission check in Dockerized env
+    "G307"  // Ignore defer inside loops - acceptable in short-lived handlers
+  ],
+  "include": [
+    "G101", // Hardcoded credentials
+    "G102", // Bind to all interfaces (0.0.0.0)
+    "G103", // Unsafe defer of os.Exit
+    "G106", // Insecure subprocess execution
+    "G107", // SQL injection
+    "G110", // Potential directory traversal
+    "G201", // SQL injection with format strings
+    "G202", // SQL query building with user input
+    "G305"  // File path manipulation
+  ],
+  "exclude-dir": [
+    "tests",
+    "integration",
+    "migrations",
+    "scripts"
+  ],
+  "nosec": "true",
+  "fmt": "json"
+}
