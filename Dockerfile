@@ -8,6 +8,9 @@ RUN apk add --no-cache git gcc musl-dev postgresql-client
 # Copy source code
 COPY . .
 
+# Copy environment example file
+COPY .env.example .env
+
 # Download dependencies
 RUN go mod tidy && go mod verify
 
