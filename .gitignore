@@ -1,0 +1,62 @@
+# --------------------
+# Go binaries & build artifacts
+# --------------------
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.test
+*.cover
+main
+
+# --------------------
+# Logs & temporary files
+# --------------------
+*.log
+*.tmp
+*.swp
+*.swo
+
+# --------------------
+# Dependency directories
+# --------------------
+vendor/
+node_modules/
+
+# --------------------
+# Environment files (sensitive)
+# --------------------
+.env
+
+# --------------------
+# Docker override files
+# --------------------
+**/docker-compose.override.yml
+**/docker-compose.override.yaml
+
+# --------------------
+# Generated & database files
+# --------------------
+*.gen.go
+*.db
+*.sqlite
+
+# --------------------
+# Coverage reports
+# --------------------
+coverage.out
+*.cov
+
+# --------------------
+# IDE & editor files
+# --------------------
+.vscode/
+.idea/
+*.iml
+
+# --------------------
+# OS-specific files
+# --------------------
+.DS_Store
+Thumbs.db
