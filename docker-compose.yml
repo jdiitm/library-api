@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  library-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@library-db:5432/library?sslmode=disable
+      - DATABASE_URL_TEST=postgres://postgres:postgres@library-test-db:5432/library_test?sslmode=disable
+    depends_on:
+      - library-db
+      - library-test-db
+    networks:
+      - library-network
+
+  library-db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=library
+    ports:
+      - "5433:5432"   # optional for local access
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - library-network
+
+  library-test-db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=library_test
+    ports:
+      - "5434:5432"   # optional for local access
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
+    networks:
+      - library-network
+
+volumes:
+  postgres_data:
+  postgres_test_data:
+
+networks:
+  library-network:
+    driver: bridge
